@@ -1,16 +1,4 @@
-###Default template
-
-<div style="padding: 20px;">
-    <?= $body?>
-</div>
-
-###Regular template
-
-<h2>In the online store "<?=$shopName?>" you ordered a product №<?=$item?>!</h2>
-<p>Thanks, Online store "<?=$shopName?>"<p>
-
 ## Basic Usage
-
 ```php
 <?php
 
@@ -22,14 +10,14 @@ $config = [
     'encryption'=>'ssl',
     'pathTemplates'=> '/templates/',
     'defaultTemplate'=> '/templates/default.php',
-    'username'=>'',
+    'username'=>'user',
     'email'=>'info@gmail.com',
-    'password'=> '',
+    'password'=> 'pass',
 ];
 $pathLog = '/logs/log.log';
 
 $transport = new MailTransport($config);
-$transport->setLogs($pathLog, 'Alex Goncharov');
+$transport->setLogs($pathLog, 'user');
 
 $params = [
     'shopName' => "Apple Shop",
@@ -38,3 +26,15 @@ $params = [
 $title = "Your purchase";
 
 $transport->send('order', 'info@gmail.com', 'user', $title, $params);
+```
+## Default template
+```html
+<div style="padding: 20px;">
+    <?= $body?>
+</div>
+```
+## Regular template
+```html
+<h2>In the online store "<?=$shopName?>" you ordered a product №<?=$item?>!</h2>
+<p>Thanks, Online store "<?=$shopName?>"<p>
+```
